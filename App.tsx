@@ -26,6 +26,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {SoundPlayer} from './Sound';
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -91,7 +92,7 @@ const App = () => {
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
-          <LearnMoreLinks />
+          <SoundPlayer></SoundPlayer>
         </View>
       </ScrollView>
     </SafeAreaView>
