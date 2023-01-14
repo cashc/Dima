@@ -15,6 +15,8 @@
 		7699B88040F8A987B510C191 /* libPods-Dima-DimaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-Dima-DimaTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		E923CD7728EA6D4700BD6590 /* ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E923CD7628EA6D4700BD6590 /* ding.mp3 */; };
+		E9F954A728EAB10300922631 /* angels-10s-in.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9F954A528EAB10300922631 /* angels-10s-in.mp3 */; };
+		E9F954A828EAB10300922631 /* angels-10s-out.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9F954A628EAB10300922631 /* angels-10s-out.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Dima/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Dima-DimaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dima-DimaTests.release.xcconfig"; path = "Target Support Files/Pods-Dima-DimaTests/Pods-Dima-DimaTests.release.xcconfig"; sourceTree = "<group>"; };
 		E923CD7628EA6D4700BD6590 /* ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ding.mp3; path = ../sound/ding.mp3; sourceTree = "<group>"; };
+		E9F954A528EAB10300922631 /* angels-10s-in.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "angels-10s-in.mp3"; path = "../sound/angels-10s-in.mp3"; sourceTree = "<group>"; };
+		E9F954A628EAB10300922631 /* angels-10s-out.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "angels-10s-out.mp3"; path = "../sound/angels-10s-out.mp3"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -118,6 +122,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E9F954A528EAB10300922631 /* angels-10s-in.mp3 */,
+				E9F954A628EAB10300922631 /* angels-10s-out.mp3 */,
 				E923CD7628EA6D4700BD6590 /* ding.mp3 */,
 				13B07FAE1A68108700A75B9A /* Dima */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -246,7 +252,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				E9F954A828EAB10300922631 /* angels-10s-out.mp3 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				E9F954A728EAB10300922631 /* angels-10s-in.mp3 in Resources */,
 				E923CD7728EA6D4700BD6590 /* ding.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

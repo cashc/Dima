@@ -12,16 +12,23 @@
     "jest": "TZ=America/New_York node_modules/.bin/jest",
     "test": "yarn run typecheck && yarn run lint && yarn run jest",
     "prettier": "prettier --check \"src/**/*.ts{,x}\" --write",
-    "open-ios": "open ios/dima.xcworkspace/",
+    "open-ios": "open ios/Dima.xcworkspace/",
     "clean": "rm -rf node_modules/",
     "pods": "pushd ios && pod install && popd",
     "debugger": "open \"rndebugger://set-debugger-loc?host=localhost&port=8081\"",
     "prepare": "husky install"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.1",
+    "@react-navigation/native-stack": "^6.9.7",
     "react": "18.1.0",
     "react-native": "^0.70.1",
-    "react-native-sound": "^0.11.2"
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-linear-gradient": "^2.6.2",
+    "react-native-safe-area-context": "^4.4.1",
+    "react-native-screens": "^3.18.2",
+    "react-native-sound": "^0.11.2",
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -31,6 +38,8 @@
     "@types/jest": "^26.0.23",
     "@types/react-native": "^0.69.6",
     "@types/react-test-renderer": "^18.0.0",
+    "@types/styled-components": "^5.1.26",
+    "@types/styled-components-react-native": "^5.2.0",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "babel-jest": "^26.6.3",
