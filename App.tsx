@@ -6,26 +6,29 @@ import { ThemeProvider } from './src/styled';
 import theme from './src/theme';
 import { HomeScreen } from './src/Home';
 import { SettingsScreen } from './src/Settings';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <ThemeProvider theme={theme}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ header: () => null }}
-          />
-          <Stack.Screen
-            name="Settings"
-            component={SettingsScreen}
-            options={{ header: () => null }}
-          />
-        </Stack.Navigator>
-      </ThemeProvider>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{ header: () => null }}
+            />
+            <Stack.Screen
+              name="Settings"
+              component={SettingsScreen}
+              options={{ header: () => null }}
+            />
+          </Stack.Navigator>
+        </ThemeProvider>
+      </SafeAreaProvider>
     </NavigationContainer>
   );
 };

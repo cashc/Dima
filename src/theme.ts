@@ -1,18 +1,22 @@
 import { Dimensions } from 'react-native';
 
 const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('window');
-const DEVICE_RING_SIZE = Math.min(550, SCREEN_WIDTH * 0.75);
+const DEVICE_RING_SIZE = Math.min(550, Math.round(SCREEN_WIDTH * 0.79));
 
 const theme = {
   primary: '#3BAFFE',
+  primaryLight: 'rgba(59, 175, 254, 0.2)',
+  primaryLighter: 'rgba(59, 175, 254, 0.2)',
+  primaryLightest: 'rgba(59, 175, 254, 0.1)',
   primaryAlt: '#0AD1E7',
   primaryGradient: ['#3BAFFE', '#0AD1E7'],
   secondaryGradient: ['#EFE9E7', '#DAE0F2', '#F9CFF2', '#52154E', '#111344'],
   black: '#000',
   onyx: '#3F4045',
+  seaGreenDark: '#567751',
   seaGreen: '#8CC084',
   seaGreenLight: '#C1D7AE',
-  background: '#172A56',
+  background: '#F9FBFF',
   darkBlue: '#172A56',
   gray: '#EEF5FF',
   lightGray: '#F9FBFF',
@@ -34,7 +38,7 @@ const theme = {
 
   screenHeight: SCREEN_HEIGHT,
   screenWidth: SCREEN_WIDTH,
-  ringSize: DEVICE_RING_SIZE,
+  ringSize: `${DEVICE_RING_SIZE}px`,
 
   shadow: {
     main: '0 5px 5px #EDF2F9',
