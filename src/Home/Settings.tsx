@@ -1,18 +1,48 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
 import styled from '../styled';
-import { Button, Icon, Singing, SoundBowl } from '../shared-ui';
+import {
+  Button,
+  Icon,
+  Singing,
+  SingingOff,
+  SoundBowl,
+  SoundBowlOff,
+} from '../shared-ui';
 import dimaTheme from '../theme';
 import debounce from 'lodash.debounce';
 
-const Container = styled(Animated.View)`
-  position: relative;
+const Overlay = styled(Animated.View)<{ isOpen: boolean }>`
+  position: absolute;
+  top: 100px;
   width: 100%;
-  background-color: yellow;
+  height: 150%;
+  background-color: ${({ theme }) => theme.overlay};
+  z-index: 100;
+  ${({ isOpen }) => (isOpen ? '' : 'display: none;')}
+`;
+
+const Touchable = styled.TouchableOpacity`
+  flex: 1;
+`;
+
+const Container = styled.View`
+  position: relative;
+  z-index: 102;
+  width: 100%;
+`;
+
+const TopAreaHide = styled.View`
+  position: absolute;
+  top: -100px;
+  width: 100%;
+  height: 100px;
+  background-color: ${({ theme }) => theme.background};
 `;
 
 const TopRow = styled.View`
-  z-index: 1;
+  z-index: 102;
+  height: 70px;
   background-color: ${({ theme }) => theme.background};
 `;
 
@@ -22,18 +52,21 @@ const ButtonAnimatedWrapper = styled(Animated.View)`
 
 const SoundSettings = styled(Animated.View)<{ isOpen: boolean }>`
   position: absolute;
-  top: 0;
-  z-index: -1;
+  top: 20px;
+  z-index: 101;
   width: 100%;
-  height: ${({ isOpen }) => (isOpen ? 70 : 0)}px;
+  height: 100px;
+  padding-top: 20px;
   flex-direction: row;
   justify-content: space-around;
-  background-color: ${({ theme }) => '#73887153'};
+  background-color: ${({ theme }) => theme.background};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
   ${({ isOpen, theme }) =>
-    isOpen ? `box-shadow: 0px 0px 0px ${theme.border};` : ''}
+    isOpen ? `box-shadow: 0px 0px 15px ${theme.border};` : ''}
 `;
 
 interface Props {
+  isPlaying: boolean;
   dingEnabled: boolean;
   toggleDing: () => void;
   singingEnabled: boolean;
@@ -41,6 +74,7 @@ interface Props {
 }
 
 export const Settings: React.FC<Props> = ({
+  isPlaying,
   dingEnabled,
   toggleDing,
   singingEnabled,
@@ -48,21 +82,21 @@ export const Settings: React.FC<Props> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [delayedIsOpen, setDelayedIsOpen] = useState(false);
-  const heightAnimated = useRef(new Animated.Value(0)).current;
+  const topPosAnimated = useRef(new Animated.Value(0)).current;
   const spinAnimated = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(heightAnimated, {
-      toValue: isOpen ? 80 : 0,
-      duration: 200,
+    Animated.timing(topPosAnimated, {
+      toValue: isOpen ? 70 : -10,
+      duration: 180,
       useNativeDriver: false,
     }).start();
     Animated.timing(spinAnimated, {
       toValue: isOpen ? 1 : 0,
-      duration: 200,
+      duration: 180,
       useNativeDriver: true,
     }).start();
-  }, [heightAnimated, spinAnimated, isOpen]);
+  }, [topPosAnimated, spinAnimated, isOpen]);
 
   const spin = spinAnimated.interpolate({
     inputRange: [0, 1],
@@ -82,23 +116,34 @@ export const Settings: React.FC<Props> = ({
 
   const debouncedClose = debounce(() => setDelayedIsOpen(false), 150);
 
+  if (isPlaying) {
+    return <TopRow />;
+  }
+
   return (
-    <Container style={{ marginBottom: heightAnimated }}>
-      <TopRow>
-        <ButtonAnimatedWrapper style={{ transform: [{ rotate: spin }] }}>
-          <Button width={120} type="transparent" onPress={toggleIsOpen}>
-            <Icon name="Settings" fill="none" stroke={dimaTheme.text} />
+    <>
+      <Overlay isOpen={isOpen} style={{ opacity: spinAnimated }}>
+        <Touchable onPress={toggleIsOpen} />
+      </Overlay>
+      <Container>
+        <TopRow>
+          {/* HACK: prevent box-shadow showing behind */}
+          <TopAreaHide />
+          <ButtonAnimatedWrapper style={{ transform: [{ rotate: spin }] }}>
+            <Button width={120} type="transparent" onPress={toggleIsOpen}>
+              <Icon name="Settings" fill="none" stroke={dimaTheme.text} />
+            </Button>
+          </ButtonAnimatedWrapper>
+        </TopRow>
+        <SoundSettings style={{ top: topPosAnimated }} isOpen={delayedIsOpen}>
+          <Button onPress={toggleDing} width={120} type="transparent">
+            {dingEnabled ? <SoundBowl /> : <SoundBowlOff />}
           </Button>
-        </ButtonAnimatedWrapper>
-      </TopRow>
-      <SoundSettings style={{ top: heightAnimated }} isOpen={delayedIsOpen}>
-        <Button onPress={toggleDing} type="transparent">
-          <SoundBowl stroke="white" fill="white" />
-        </Button>
-        <Button onPress={toggleSinging} type="transparent">
-          <Singing stroke="white" fill="white" />
-        </Button>
-      </SoundSettings>
-    </Container>
+          <Button onPress={toggleSinging} width={120} type="transparent">
+            {singingEnabled ? <Singing /> : <SingingOff />}
+          </Button>
+        </SoundSettings>
+      </Container>
+    </>
   );
 };

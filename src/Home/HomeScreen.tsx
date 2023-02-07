@@ -144,6 +144,7 @@ export class HomeScreen extends Component<Props, State> {
     return (
       <Screen scrollEnabled={false}>
         <Settings
+          isPlaying={isPlaying}
           dingEnabled={dingEnabled}
           toggleDing={this.toggleDing}
           singingEnabled={singingEnabled}
@@ -157,7 +158,11 @@ export class HomeScreen extends Component<Props, State> {
               </AnimalTouchable>
             </Ring>
           </RingContainer>
-          {isPlaying ? null : <BodyText>Tap to begin...</BodyText>}
+          {isPlaying ? (
+            <BodyText>Tap to stop</BodyText>
+          ) : (
+            <BodyText>Tap to begin...</BodyText>
+          )}
         </Container>
       </Screen>
     );

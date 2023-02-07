@@ -17,6 +17,7 @@ const theme = {
   seaGreen: '#8CC084',
   seaGreenLight: '#C1D7AE',
   background: '#F9FBFF',
+  overlay: 'rgba(59, 59, 59, 0.2)',
   darkBlue: '#172A56',
   gray: '#EEF5FF',
   lightGray: '#F9FBFF',
